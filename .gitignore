@@ -16,3 +16,7 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+drupal8/sites/default/files/css/*
+drupal8/sites/default/files/js/js_*
+drupal8/sites/default/files/php/twig/*
+
