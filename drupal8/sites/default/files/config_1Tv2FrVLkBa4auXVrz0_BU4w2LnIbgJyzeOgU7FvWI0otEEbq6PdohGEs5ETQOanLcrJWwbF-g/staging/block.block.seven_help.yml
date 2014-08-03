@@ -1,0 +1,23 @@
+uuid: 5e2c9a0d-3c9f-495c-8c06-6c3b81b60c80
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - seven
+id: seven_help
+theme: seven
+region: help
+weight: 0
+provider: null
+plugin: system_help_block
+settings:
+  visibility: {  }
+  id: system_help_block
+  label: 'System Help'
+  provider: system
+  label_display: '0'
+  cache:
+    max_age: -1
+    contexts: {  }
