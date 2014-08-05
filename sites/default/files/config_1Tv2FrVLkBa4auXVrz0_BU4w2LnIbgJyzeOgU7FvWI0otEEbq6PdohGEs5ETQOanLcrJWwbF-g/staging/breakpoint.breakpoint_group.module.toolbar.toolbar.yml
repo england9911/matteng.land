@@ -1,0 +1,19 @@
+uuid: 972229f7-451d-4745-b809-9ee1ea170823
+langcode: en
+status: true
+dependencies:
+  entity:
+    - breakpoint.breakpoint.module.toolbar.narrow
+    - breakpoint.breakpoint.module.toolbar.standard
+    - breakpoint.breakpoint.module.toolbar.wide
+  module:
+    - toolbar
+id: module.toolbar.toolbar
+label: toolbar
+name: toolbar
+breakpoint_ids:
+  - module.toolbar.narrow
+  - module.toolbar.standard
+  - module.toolbar.wide
+source: toolbar
+sourceType: module

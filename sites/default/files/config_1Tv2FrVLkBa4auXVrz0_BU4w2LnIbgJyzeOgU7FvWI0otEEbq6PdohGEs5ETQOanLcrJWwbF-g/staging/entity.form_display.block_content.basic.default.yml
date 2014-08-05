@@ -1,0 +1,30 @@
+uuid: 18c8d5c2-e2d4-48cb-a702-2b3567dd87a6
+langcode: en
+status: true
+dependencies:
+  entity:
+    - block_content.type.basic
+    - field.instance.block_content.basic.body
+  module:
+    - text
+id: block_content.basic.default
+targetEntityType: block_content
+bundle: basic
+mode: default
+content:
+  info:
+    type: string
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  body:
+    type: text_textarea_with_summary
+    weight: -4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

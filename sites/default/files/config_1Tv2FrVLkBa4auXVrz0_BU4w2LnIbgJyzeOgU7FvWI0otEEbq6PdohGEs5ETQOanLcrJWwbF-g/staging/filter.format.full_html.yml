@@ -1,0 +1,28 @@
+uuid: 1c7e1f17-abd5-4ca8-aa06-06284193685d
+langcode: en
+status: true
+dependencies:
+  module:
+    - editor
+name: 'Full HTML'
+format: full_html
+weight: 1
+filters:
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 9
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 11
+    settings: {  }

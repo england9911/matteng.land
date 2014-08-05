@@ -1,0 +1,21 @@
+uuid: b8f9b5ad-26bf-4177-9119-254f093b656b
+langcode: en
+status: true
+dependencies:
+  entity:
+    - field.storage.node.body
+    - node.type.article
+id: node.article.body
+label: Body
+field_name: body
+entity_type: node
+bundle: article
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_function: ''
+settings:
+  display_summary: true
+  text_processing: true
+field_type: text_with_summary

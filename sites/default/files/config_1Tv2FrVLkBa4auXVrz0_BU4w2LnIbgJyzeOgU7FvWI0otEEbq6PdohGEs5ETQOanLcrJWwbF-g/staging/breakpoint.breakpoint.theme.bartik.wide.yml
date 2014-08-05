@@ -1,0 +1,15 @@
+uuid: b1039118-a921-4be2-bb02-2f9eaabb7b31
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bartik
+id: theme.bartik.wide
+label: wide
+name: wide
+mediaQuery: 'all and (min-width: 851px)'
+source: bartik
+sourceType: theme
+weight: 2
+multipliers:
+  1x: 1x

@@ -1,0 +1,22 @@
+uuid: b2ca6b1b-2bfd-4a60-8f0f-15bfc4e7a584
+langcode: en
+status: true
+dependencies:
+  entity:
+    - comment.type.comment
+    - field.instance.comment.comment.comment_body
+  module:
+    - text
+id: comment.comment.default
+label: null
+targetEntityType: comment
+bundle: comment
+mode: default
+content:
+  comment_body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
