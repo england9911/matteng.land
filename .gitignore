@@ -19,3 +19,4 @@ CVS
 sites/default/files/css/*
 sites/default/files/js/js_*
 sites/default/files/php/twig/*
+sites/default/files/config_*/active/*
