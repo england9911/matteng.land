@@ -49,7 +49,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
             'access_check.quickedit.entity' => 'getAccessCheck_Quickedit_EntityService',
             'access_check.quickedit.entity_field' => 'getAccessCheck_Quickedit_EntityFieldService',
             'access_check.theme' => 'getAccessCheck_ThemeService',
-            'access_check.update.manager_access' => 'getAccessCheck_Update_ManagerAccessService',
             'access_check.user.login_status' => 'getAccessCheck_User_LoginStatusService',
             'access_check.user.register' => 'getAccessCheck_User_RegisterService',
             'access_check.user.role' => 'getAccessCheck_User_RoleService',
@@ -345,9 +344,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
             'twig' => 'getTwigService',
             'twig.loader.filesystem' => 'getTwig_Loader_FilesystemService',
             'typed_data_manager' => 'getTypedDataManagerService',
-            'update.fetcher' => 'getUpdate_FetcherService',
-            'update.manager' => 'getUpdate_ManagerService',
-            'update.processor' => 'getUpdate_ProcessorService',
             'url_generator' => 'getUrlGeneratorService',
             'user.auth' => 'getUser_AuthService',
             'user.autocomplete' => 'getUser_AutocompleteService',
@@ -593,19 +589,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
     }
 
     /**
-     * Gets the 'access_check.update.manager_access' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Drupal\update\Access\UpdateManagerAccessCheck A Drupal\update\Access\UpdateManagerAccessCheck instance.
-     */
-    protected function getAccessCheck_Update_ManagerAccessService()
-    {
-        return $this->services['access_check.update.manager_access'] = new \Drupal\update\Access\UpdateManagerAccessCheck($this->get('settings'));
-    }
-
-    /**
      * Gets the 'access_check.user.login_status' service.
      *
      * This service is shared.
@@ -671,7 +654,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
         $instance->addCheckService('access_check.quickedit.entity_field', 'access', array(0 => '_access_quickedit_entity_field'));
         $instance->addCheckService('access_check.quickedit.entity', 'access', array(0 => '_access_quickedit_entity'));
         $instance->addCheckService('access_check.cron', 'access', array(0 => '_access_system_cron'));
-        $instance->addCheckService('access_check.update.manager_access', 'access', array(0 => '_access_update_manager'));
         $instance->addCheckService('access_check.permission', 'access', array(0 => '_permission'));
         $instance->addCheckService('access_check.user.register', 'access', array(0 => '_access_user_register'));
         $instance->addCheckService('access_check.user.role', 'access', array(0 => '_role'));
@@ -1540,7 +1522,7 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
      */
     protected function getContainer_NamespacesService()
     {
-        return $this->services['container.namespaces'] = new \ArrayObject(array('Drupal\\block' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/block/src', 'Drupal\\block_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/block_content/src', 'Drupal\\breakpoint' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/breakpoint/src', 'Drupal\\ckeditor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/ckeditor/src', 'Drupal\\color' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/color/src', 'Drupal\\comment' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/comment/src', 'Drupal\\config' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/config/src', 'Drupal\\contact' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/contact/src', 'Drupal\\contextual' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/contextual/src', 'Drupal\\datetime' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/datetime/src', 'Drupal\\dblog' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/dblog/src', 'Drupal\\editor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/editor/src', 'Drupal\\entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/entity/src', 'Drupal\\entity_reference' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/entity_reference/src', 'Drupal\\field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/field/src', 'Drupal\\field_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/field_ui/src', 'Drupal\\file' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/file/src', 'Drupal\\filter' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/filter/src', 'Drupal\\help' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/help/src', 'Drupal\\history' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/history/src', 'Drupal\\image' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/image/src', 'Drupal\\menu_link_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/menu_link_content/src', 'Drupal\\menu_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/menu_ui/src', 'Drupal\\node' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/node/src', 'Drupal\\options' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/options/src', 'Drupal\\path' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/path/src', 'Drupal\\quickedit' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/quickedit/src', 'Drupal\\rdf' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/rdf/src', 'Drupal\\search' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/search/src', 'Drupal\\shortcut' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/shortcut/src', 'Drupal\\system' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/system/src', 'Drupal\\taxonomy' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/taxonomy/src', 'Drupal\\text' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/text/src', 'Drupal\\toolbar' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/toolbar/src', 'Drupal\\tour' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/tour/src', 'Drupal\\update' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/update/src', 'Drupal\\user' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/user/src', 'Drupal\\views_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/views_ui/src', 'Drupal\\views' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/views/src', 'Drupal\\standard' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/profiles/standard/src', 'Drupal\\Core\\Entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Entity', 'Drupal\\Core\\Field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Field', 'Drupal\\Core\\Mail' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Mail', 'Drupal\\Core\\TypedData' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/TypedData', 'Drupal\\Core\\Validation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Validation', 'Drupal\\Component\\Annotation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Component/Annotation'));
+        return $this->services['container.namespaces'] = new \ArrayObject(array('Drupal\\block' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/block/src', 'Drupal\\block_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/block_content/src', 'Drupal\\breakpoint' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/breakpoint/src', 'Drupal\\ckeditor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/ckeditor/src', 'Drupal\\color' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/color/src', 'Drupal\\comment' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/comment/src', 'Drupal\\config' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/config/src', 'Drupal\\contact' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/contact/src', 'Drupal\\contextual' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/contextual/src', 'Drupal\\datetime' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/datetime/src', 'Drupal\\dblog' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/dblog/src', 'Drupal\\editor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/editor/src', 'Drupal\\entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/entity/src', 'Drupal\\entity_reference' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/entity_reference/src', 'Drupal\\field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/field/src', 'Drupal\\field_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/field_ui/src', 'Drupal\\file' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/file/src', 'Drupal\\filter' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/filter/src', 'Drupal\\help' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/help/src', 'Drupal\\history' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/history/src', 'Drupal\\image' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/image/src', 'Drupal\\menu_link_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/menu_link_content/src', 'Drupal\\menu_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/menu_ui/src', 'Drupal\\node' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/node/src', 'Drupal\\options' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/options/src', 'Drupal\\path' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/path/src', 'Drupal\\quickedit' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/quickedit/src', 'Drupal\\rdf' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/rdf/src', 'Drupal\\search' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/search/src', 'Drupal\\shortcut' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/shortcut/src', 'Drupal\\system' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/system/src', 'Drupal\\taxonomy' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/taxonomy/src', 'Drupal\\text' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/text/src', 'Drupal\\toolbar' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/toolbar/src', 'Drupal\\tour' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/tour/src', 'Drupal\\user' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/user/src', 'Drupal\\views_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/views_ui/src', 'Drupal\\views' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/views/src', 'Drupal\\Core\\Entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Entity', 'Drupal\\Core\\Field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Field', 'Drupal\\Core\\Mail' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Mail', 'Drupal\\Core\\TypedData' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/TypedData', 'Drupal\\Core\\Validation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Validation', 'Drupal\\Component\\Annotation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Component/Annotation'));
     }
 
     /**
@@ -2874,7 +2856,7 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
      */
     protected function getModuleHandlerService()
     {
-        return $this->services['module_handler'] = new \Drupal\Core\Extension\ModuleHandler(array('block' => array('type' => 'module', 'pathname' => 'core/modules/block/block.info.yml', 'filename' => 'block.module'), 'block_content' => array('type' => 'module', 'pathname' => 'core/modules/block_content/block_content.info.yml', 'filename' => 'block_content.module'), 'breakpoint' => array('type' => 'module', 'pathname' => 'core/modules/breakpoint/breakpoint.info.yml', 'filename' => 'breakpoint.module'), 'ckeditor' => array('type' => 'module', 'pathname' => 'core/modules/ckeditor/ckeditor.info.yml', 'filename' => 'ckeditor.module'), 'color' => array('type' => 'module', 'pathname' => 'core/modules/color/color.info.yml', 'filename' => 'color.module'), 'comment' => array('type' => 'module', 'pathname' => 'core/modules/comment/comment.info.yml', 'filename' => 'comment.module'), 'config' => array('type' => 'module', 'pathname' => 'core/modules/config/config.info.yml', 'filename' => 'config.module'), 'contact' => array('type' => 'module', 'pathname' => 'core/modules/contact/contact.info.yml', 'filename' => 'contact.module'), 'contextual' => array('type' => 'module', 'pathname' => 'core/modules/contextual/contextual.info.yml', 'filename' => 'contextual.module'), 'datetime' => array('type' => 'module', 'pathname' => 'core/modules/datetime/datetime.info.yml', 'filename' => 'datetime.module'), 'dblog' => array('type' => 'module', 'pathname' => 'core/modules/dblog/dblog.info.yml', 'filename' => 'dblog.module'), 'editor' => array('type' => 'module', 'pathname' => 'core/modules/editor/editor.info.yml', 'filename' => 'editor.module'), 'entity' => array('type' => 'module', 'pathname' => 'core/modules/entity/entity.info.yml', 'filename' => 'entity.module'), 'entity_reference' => array('type' => 'module', 'pathname' => 'core/modules/entity_reference/entity_reference.info.yml', 'filename' => 'entity_reference.module'), 'field' => array('type' => 'module', 'pathname' => 'core/modules/field/field.info.yml', 'filename' => 'field.module'), 'field_ui' => array('type' => 'module', 'pathname' => 'core/modules/field_ui/field_ui.info.yml', 'filename' => 'field_ui.module'), 'file' => array('type' => 'module', 'pathname' => 'core/modules/file/file.info.yml', 'filename' => 'file.module'), 'filter' => array('type' => 'module', 'pathname' => 'core/modules/filter/filter.info.yml', 'filename' => 'filter.module'), 'help' => array('type' => 'module', 'pathname' => 'core/modules/help/help.info.yml', 'filename' => 'help.module'), 'history' => array('type' => 'module', 'pathname' => 'core/modules/history/history.info.yml', 'filename' => 'history.module'), 'image' => array('type' => 'module', 'pathname' => 'core/modules/image/image.info.yml', 'filename' => 'image.module'), 'menu_link_content' => array('type' => 'module', 'pathname' => 'core/modules/menu_link_content/menu_link_content.info.yml', 'filename' => 'menu_link_content.module'), 'menu_ui' => array('type' => 'module', 'pathname' => 'core/modules/menu_ui/menu_ui.info.yml', 'filename' => 'menu_ui.module'), 'node' => array('type' => 'module', 'pathname' => 'core/modules/node/node.info.yml', 'filename' => 'node.module'), 'options' => array('type' => 'module', 'pathname' => 'core/modules/options/options.info.yml', 'filename' => 'options.module'), 'path' => array('type' => 'module', 'pathname' => 'core/modules/path/path.info.yml', 'filename' => 'path.module'), 'quickedit' => array('type' => 'module', 'pathname' => 'core/modules/quickedit/quickedit.info.yml', 'filename' => 'quickedit.module'), 'rdf' => array('type' => 'module', 'pathname' => 'core/modules/rdf/rdf.info.yml', 'filename' => 'rdf.module'), 'search' => array('type' => 'module', 'pathname' => 'core/modules/search/search.info.yml', 'filename' => 'search.module'), 'shortcut' => array('type' => 'module', 'pathname' => 'core/modules/shortcut/shortcut.info.yml', 'filename' => 'shortcut.module'), 'system' => array('type' => 'module', 'pathname' => 'core/modules/system/system.info.yml', 'filename' => 'system.module'), 'taxonomy' => array('type' => 'module', 'pathname' => 'core/modules/taxonomy/taxonomy.info.yml', 'filename' => 'taxonomy.module'), 'text' => array('type' => 'module', 'pathname' => 'core/modules/text/text.info.yml', 'filename' => 'text.module'), 'toolbar' => array('type' => 'module', 'pathname' => 'core/modules/toolbar/toolbar.info.yml', 'filename' => 'toolbar.module'), 'tour' => array('type' => 'module', 'pathname' => 'core/modules/tour/tour.info.yml', 'filename' => 'tour.module'), 'update' => array('type' => 'module', 'pathname' => 'core/modules/update/update.info.yml', 'filename' => 'update.module'), 'user' => array('type' => 'module', 'pathname' => 'core/modules/user/user.info.yml', 'filename' => 'user.module'), 'views_ui' => array('type' => 'module', 'pathname' => 'core/modules/views_ui/views_ui.info.yml', 'filename' => 'views_ui.module'), 'views' => array('type' => 'module', 'pathname' => 'core/modules/views/views.info.yml', 'filename' => 'views.module'), 'standard' => array('type' => 'profile', 'pathname' => 'core/profiles/standard/standard.info.yml', 'filename' => 'standard.profile')), $this->get('cache.bootstrap'));
+        return $this->services['module_handler'] = new \Drupal\Core\Extension\ModuleHandler(array('block' => array('type' => 'module', 'pathname' => 'core/modules/block/block.info.yml', 'filename' => 'block.module'), 'block_content' => array('type' => 'module', 'pathname' => 'core/modules/block_content/block_content.info.yml', 'filename' => 'block_content.module'), 'breakpoint' => array('type' => 'module', 'pathname' => 'core/modules/breakpoint/breakpoint.info.yml', 'filename' => 'breakpoint.module'), 'ckeditor' => array('type' => 'module', 'pathname' => 'core/modules/ckeditor/ckeditor.info.yml', 'filename' => 'ckeditor.module'), 'color' => array('type' => 'module', 'pathname' => 'core/modules/color/color.info.yml', 'filename' => 'color.module'), 'comment' => array('type' => 'module', 'pathname' => 'core/modules/comment/comment.info.yml', 'filename' => 'comment.module'), 'config' => array('type' => 'module', 'pathname' => 'core/modules/config/config.info.yml', 'filename' => 'config.module'), 'contact' => array('type' => 'module', 'pathname' => 'core/modules/contact/contact.info.yml', 'filename' => 'contact.module'), 'contextual' => array('type' => 'module', 'pathname' => 'core/modules/contextual/contextual.info.yml', 'filename' => 'contextual.module'), 'datetime' => array('type' => 'module', 'pathname' => 'core/modules/datetime/datetime.info.yml', 'filename' => 'datetime.module'), 'dblog' => array('type' => 'module', 'pathname' => 'core/modules/dblog/dblog.info.yml', 'filename' => 'dblog.module'), 'editor' => array('type' => 'module', 'pathname' => 'core/modules/editor/editor.info.yml', 'filename' => 'editor.module'), 'entity' => array('type' => 'module', 'pathname' => 'core/modules/entity/entity.info.yml', 'filename' => 'entity.module'), 'entity_reference' => array('type' => 'module', 'pathname' => 'core/modules/entity_reference/entity_reference.info.yml', 'filename' => 'entity_reference.module'), 'field' => array('type' => 'module', 'pathname' => 'core/modules/field/field.info.yml', 'filename' => 'field.module'), 'field_ui' => array('type' => 'module', 'pathname' => 'core/modules/field_ui/field_ui.info.yml', 'filename' => 'field_ui.module'), 'file' => array('type' => 'module', 'pathname' => 'core/modules/file/file.info.yml', 'filename' => 'file.module'), 'filter' => array('type' => 'module', 'pathname' => 'core/modules/filter/filter.info.yml', 'filename' => 'filter.module'), 'help' => array('type' => 'module', 'pathname' => 'core/modules/help/help.info.yml', 'filename' => 'help.module'), 'history' => array('type' => 'module', 'pathname' => 'core/modules/history/history.info.yml', 'filename' => 'history.module'), 'image' => array('type' => 'module', 'pathname' => 'core/modules/image/image.info.yml', 'filename' => 'image.module'), 'menu_link_content' => array('type' => 'module', 'pathname' => 'core/modules/menu_link_content/menu_link_content.info.yml', 'filename' => 'menu_link_content.module'), 'menu_ui' => array('type' => 'module', 'pathname' => 'core/modules/menu_ui/menu_ui.info.yml', 'filename' => 'menu_ui.module'), 'node' => array('type' => 'module', 'pathname' => 'core/modules/node/node.info.yml', 'filename' => 'node.module'), 'options' => array('type' => 'module', 'pathname' => 'core/modules/options/options.info.yml', 'filename' => 'options.module'), 'path' => array('type' => 'module', 'pathname' => 'core/modules/path/path.info.yml', 'filename' => 'path.module'), 'quickedit' => array('type' => 'module', 'pathname' => 'core/modules/quickedit/quickedit.info.yml', 'filename' => 'quickedit.module'), 'rdf' => array('type' => 'module', 'pathname' => 'core/modules/rdf/rdf.info.yml', 'filename' => 'rdf.module'), 'search' => array('type' => 'module', 'pathname' => 'core/modules/search/search.info.yml', 'filename' => 'search.module'), 'shortcut' => array('type' => 'module', 'pathname' => 'core/modules/shortcut/shortcut.info.yml', 'filename' => 'shortcut.module'), 'system' => array('type' => 'module', 'pathname' => 'core/modules/system/system.info.yml', 'filename' => 'system.module'), 'taxonomy' => array('type' => 'module', 'pathname' => 'core/modules/taxonomy/taxonomy.info.yml', 'filename' => 'taxonomy.module'), 'text' => array('type' => 'module', 'pathname' => 'core/modules/text/text.info.yml', 'filename' => 'text.module'), 'toolbar' => array('type' => 'module', 'pathname' => 'core/modules/toolbar/toolbar.info.yml', 'filename' => 'toolbar.module'), 'tour' => array('type' => 'module', 'pathname' => 'core/modules/tour/tour.info.yml', 'filename' => 'tour.module'), 'user' => array('type' => 'module', 'pathname' => 'core/modules/user/user.info.yml', 'filename' => 'user.module'), 'views_ui' => array('type' => 'module', 'pathname' => 'core/modules/views_ui/views_ui.info.yml', 'filename' => 'views_ui.module'), 'views' => array('type' => 'module', 'pathname' => 'core/modules/views/views.info.yml', 'filename' => 'views.module')), $this->get('cache.bootstrap'));
     }
 
     /**
@@ -4665,7 +4647,7 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
      */
     protected function getTwig_Loader_FilesystemService()
     {
-        return $this->services['twig.loader.filesystem'] = new \Twig_Loader_Filesystem('/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8');
+        return $this->services['twig.loader.filesystem'] = new \Twig_Loader_Filesystem('/Users/johnnytightlips/Desktop/DevSites/matteng.land');
     }
 
     /**
@@ -4683,45 +4665,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
         $instance->setValidationConstraintManager($this->get('validation.constraint'));
 
         return $instance;
-    }
-
-    /**
-     * Gets the 'update.fetcher' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Drupal\update\UpdateFetcher A Drupal\update\UpdateFetcher instance.
-     */
-    protected function getUpdate_FetcherService()
-    {
-        return $this->services['update.fetcher'] = new \Drupal\update\UpdateFetcher($this->get('config.factory'), $this->get('http_client'));
-    }
-
-    /**
-     * Gets the 'update.manager' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Drupal\update\UpdateManager A Drupal\update\UpdateManager instance.
-     */
-    protected function getUpdate_ManagerService()
-    {
-        return $this->services['update.manager'] = new \Drupal\update\UpdateManager($this->get('config.factory'), $this->get('module_handler'), $this->get('update.processor'), $this->get('string_translation'), $this->get('keyvalue.expirable'));
-    }
-
-    /**
-     * Gets the 'update.processor' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Drupal\update\UpdateProcessor A Drupal\update\UpdateProcessor instance.
-     */
-    protected function getUpdate_ProcessorService()
-    {
-        return $this->services['update.processor'] = new \Drupal\update\UpdateProcessor($this->get('config.factory'), $this->get('queue'), $this->get('update.fetcher'), $this->get('state'), $this->get('private_key'), $this->get('keyvalue'), $this->get('keyvalue.expirable'));
     }
 
     /**
@@ -5196,11 +5139,6 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
                     'pathname' => 'core/modules/tour/tour.info.yml',
                     'filename' => 'tour.module',
                 ),
-                'update' => array(
-                    'type' => 'module',
-                    'pathname' => 'core/modules/update/update.info.yml',
-                    'filename' => 'update.module',
-                ),
                 'user' => array(
                     'type' => 'module',
                     'pathname' => 'core/modules/user/user.info.yml',
@@ -5216,59 +5154,52 @@ class service_container_prod extends \Drupal\Core\DependencyInjection\Container
                     'pathname' => 'core/modules/views/views.info.yml',
                     'filename' => 'views.module',
                 ),
-                'standard' => array(
-                    'type' => 'profile',
-                    'pathname' => 'core/profiles/standard/standard.info.yml',
-                    'filename' => 'standard.profile',
-                ),
             ),
             'container.namespaces' => array(
-                'Drupal\\block' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/block/src',
-                'Drupal\\block_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/block_content/src',
-                'Drupal\\breakpoint' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/breakpoint/src',
-                'Drupal\\ckeditor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/ckeditor/src',
-                'Drupal\\color' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/color/src',
-                'Drupal\\comment' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/comment/src',
-                'Drupal\\config' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/config/src',
-                'Drupal\\contact' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/contact/src',
-                'Drupal\\contextual' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/contextual/src',
-                'Drupal\\datetime' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/datetime/src',
-                'Drupal\\dblog' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/dblog/src',
-                'Drupal\\editor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/editor/src',
-                'Drupal\\entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/entity/src',
-                'Drupal\\entity_reference' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/entity_reference/src',
-                'Drupal\\field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/field/src',
-                'Drupal\\field_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/field_ui/src',
-                'Drupal\\file' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/file/src',
-                'Drupal\\filter' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/filter/src',
-                'Drupal\\help' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/help/src',
-                'Drupal\\history' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/history/src',
-                'Drupal\\image' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/image/src',
-                'Drupal\\menu_link_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/menu_link_content/src',
-                'Drupal\\menu_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/menu_ui/src',
-                'Drupal\\node' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/node/src',
-                'Drupal\\options' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/options/src',
-                'Drupal\\path' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/path/src',
-                'Drupal\\quickedit' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/quickedit/src',
-                'Drupal\\rdf' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/rdf/src',
-                'Drupal\\search' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/search/src',
-                'Drupal\\shortcut' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/shortcut/src',
-                'Drupal\\system' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/system/src',
-                'Drupal\\taxonomy' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/taxonomy/src',
-                'Drupal\\text' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/text/src',
-                'Drupal\\toolbar' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/toolbar/src',
-                'Drupal\\tour' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/tour/src',
-                'Drupal\\update' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/update/src',
-                'Drupal\\user' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/user/src',
-                'Drupal\\views_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/views_ui/src',
-                'Drupal\\views' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/modules/views/src',
-                'Drupal\\standard' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/profiles/standard/src',
-                'Drupal\\Core\\Entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Entity',
-                'Drupal\\Core\\Field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Field',
-                'Drupal\\Core\\Mail' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Mail',
-                'Drupal\\Core\\TypedData' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/TypedData',
-                'Drupal\\Core\\Validation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Core/Validation',
-                'Drupal\\Component\\Annotation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/drupal8/core/lib/Drupal/Component/Annotation',
+                'Drupal\\block' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/block/src',
+                'Drupal\\block_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/block_content/src',
+                'Drupal\\breakpoint' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/breakpoint/src',
+                'Drupal\\ckeditor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/ckeditor/src',
+                'Drupal\\color' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/color/src',
+                'Drupal\\comment' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/comment/src',
+                'Drupal\\config' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/config/src',
+                'Drupal\\contact' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/contact/src',
+                'Drupal\\contextual' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/contextual/src',
+                'Drupal\\datetime' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/datetime/src',
+                'Drupal\\dblog' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/dblog/src',
+                'Drupal\\editor' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/editor/src',
+                'Drupal\\entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/entity/src',
+                'Drupal\\entity_reference' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/entity_reference/src',
+                'Drupal\\field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/field/src',
+                'Drupal\\field_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/field_ui/src',
+                'Drupal\\file' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/file/src',
+                'Drupal\\filter' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/filter/src',
+                'Drupal\\help' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/help/src',
+                'Drupal\\history' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/history/src',
+                'Drupal\\image' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/image/src',
+                'Drupal\\menu_link_content' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/menu_link_content/src',
+                'Drupal\\menu_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/menu_ui/src',
+                'Drupal\\node' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/node/src',
+                'Drupal\\options' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/options/src',
+                'Drupal\\path' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/path/src',
+                'Drupal\\quickedit' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/quickedit/src',
+                'Drupal\\rdf' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/rdf/src',
+                'Drupal\\search' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/search/src',
+                'Drupal\\shortcut' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/shortcut/src',
+                'Drupal\\system' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/system/src',
+                'Drupal\\taxonomy' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/taxonomy/src',
+                'Drupal\\text' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/text/src',
+                'Drupal\\toolbar' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/toolbar/src',
+                'Drupal\\tour' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/tour/src',
+                'Drupal\\user' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/user/src',
+                'Drupal\\views_ui' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/views_ui/src',
+                'Drupal\\views' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/modules/views/src',
+                'Drupal\\Core\\Entity' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Entity',
+                'Drupal\\Core\\Field' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Field',
+                'Drupal\\Core\\Mail' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Mail',
+                'Drupal\\Core\\TypedData' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/TypedData',
+                'Drupal\\Core\\Validation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Core/Validation',
+                'Drupal\\Component\\Annotation' => '/Users/johnnytightlips/Desktop/DevSites/matteng.land/core/lib/Drupal/Component/Annotation',
             ),
             'language.default_values' => array(
                 'id' => 'en',
